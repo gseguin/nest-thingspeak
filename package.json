@@ -1,0 +1,10 @@
+{
+  "name": "grunt-fixmyjs",
+  "description": "Automatically fix JavaScript lint errors.",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "thingspeakclient": "^0.4.0",
+    "unofficial-nest-api": "^0.1.4"
+  }
+}
