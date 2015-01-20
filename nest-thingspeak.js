@@ -12,10 +12,11 @@
  *  field7: outdoor temp (from wunderground.com)
  */
 
-"option strict";
-var util = require('util'),
-http = require('http'),
-ThingSpeakClient = require('thingspeakclient'), // get from npm
+'use strict';
+var config = require('./config/environment');
+	util = require('util'),
+	http = require('http'),
+	ThingSpeakClient = require('thingspeakclient'), // get from npm
     nest = require('unofficial-nest-api');  // get from npm
 
 process.on('uncaughtException', function(err) {
@@ -25,25 +26,17 @@ process.on('uncaughtException', function(err) {
 
 var TRACE=true;
 
-// nest parameters
-var username = 'YOUR-NEST-LOGIN';
-var password = 'YOUR NEST PASSWORD';
- 
-// thingspeak parameters
-var channelId = 10598;
-var apiKey = 'F7Y9O8BBWZBTRC0R';
-
 // weather underground parameters
 var weatherUrl = {
   host: 'api.wunderground.com',
-  path: '/api/YOUR-WUNDERGROUND-API-KEY/conditions/q/CA/San_Francisco.json'
+  path: '/api/' + config.secrets.wunderground.apiKey + '/conditions/q/' + config.secrets.wunderground.zipcode + '.json'
 };
 
 // update interval in ms
 var updateInterval = 1000*60;
 
 var tsclient = new ThingSpeakClient();
-tsclient.attachChannel(channelId, { writeKey:apiKey});
+tsclient.attachChannel(config.secrets.thingspeak.channelId, { writeKey: config.secrets.thingspeak.apiKey});
 
 var setTemp = 0;
 var curTemp = 0;
@@ -79,7 +72,7 @@ function merge(o1, o2) {
 }
 
 function fetchData(data) {
-    nest.login(username, password, function (err, data) {
+    nest.login(config.secrets.nest.username, config.secrets.nest.password, function (err, data) {
         if (err) {
             console.log(err.message);
             //process.exit(1);
