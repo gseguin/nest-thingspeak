@@ -17,11 +17,11 @@
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var config = require('./config/environment');
+var config = require('./config/environment'),
 	util = require('util'),
 	http = require('http'),
-	ThingSpeakClient = require('thingspeakclient'), // get from npm
-    nest = require('unofficial-nest-api');  // get from npm
+	ThingSpeakClient = require('thingspeakclient')
+    nest = require('unofficial-nest-api');
 
 process.on('uncaughtException', function(err) {
     // handle the error safely
