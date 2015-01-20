@@ -20,7 +20,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require('./config/environment'),
 	util = require('util'),
 	http = require('http'),
-	ThingSpeakClient = require('thingspeakclient')
+	ThingSpeakClient = require('thingspeakclient'),
     nest = require('unofficial-nest-api');
 
 process.on('uncaughtException', function(err) {
