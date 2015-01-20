@@ -125,7 +125,7 @@ function fetchData(data) {
 			}
 			//if (Object.keys(tsData).length > 0) {
 			if (TRACE) console.log("sending to thingspeak");
-			tsclient.updateChannel(channelId,tsData);
+			tsclient.updateChannel(config.secrets.thingspeak.channelId,tsData);
 //			}
 		    }
 		    curTemp = cTemp;
