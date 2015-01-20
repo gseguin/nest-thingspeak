@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "private": "true",
   "dependencies": {
+    "lodash": "^2.4.1",
     "thingspeakclient": "^0.4.0",
     "unofficial-nest-api": "^0.1.4"
   }
